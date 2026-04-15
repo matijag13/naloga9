@@ -4,14 +4,16 @@
              xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_1.xsd"
              version="3.1">
     <persistence-unit name="naloga9PU" transaction-type="JTA">
-        <jta-data-source>java:comp/env/jdbc/naloga9</jta-data-source>
+        <jta-data-source>jdbc/naloga9</jta-data-source>
         <class>si.um.feri.aiv.vao.User</class>
         <class>si.um.feri.aiv.vao.Provider</class>
         <class>si.um.feri.aiv.vao.ChargingStation</class>
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
-            <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
-            <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.show_sql" value="false"/>
+            <property name="hibernate.format_sql" value="false"/>
+            <property name="hibernate.jdbc.time_zone" value="UTC"/>
         </properties>
     </persistence-unit>
 </persistence>
