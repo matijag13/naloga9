@@ -13,7 +13,7 @@ Datoteka: `src/main/resources/META-INF/persistence.xml`
   - `hibernate.dialect=org.hibernate.dialect.MySQLDialect`
   - `hibernate.hbm2ddl.auto=update`
   - `hibernate.jdbc.time_zone=UTC`
-  - opomba: `update` je primeren za razvojno okolje; za produkcijo uporabi migracije (npr. Flyway/Liquibase) in `validate`
+  - opomba: `update` je primeren za razvojno okolje; ob odstranjevanju polj/tabel po potrebi resetiraj shemo ročno, za produkcijo pa uporabi migracije (npr. Flyway/Liquibase) in `validate`
 
 ## MySQL Connector/J
 
