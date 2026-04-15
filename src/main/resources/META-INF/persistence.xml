@@ -10,6 +10,7 @@
         <class>si.um.feri.aiv.vao.ChargingStation</class>
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+            <!-- Development default; production should use migrations + validate (see README). -->
             <property name="hibernate.hbm2ddl.auto" value="update"/>
             <property name="hibernate.show_sql" value="false"/>
             <property name="hibernate.format_sql" value="false"/>
