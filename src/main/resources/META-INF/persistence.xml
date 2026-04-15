@@ -9,8 +9,9 @@
         <class>si.um.feri.aiv.vao.Provider</class>
         <class>si.um.feri.aiv.vao.ChargingStation</class>
         <properties>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+            <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
             <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create"/>
         </properties>
     </persistence-unit>
 </persistence>
-
