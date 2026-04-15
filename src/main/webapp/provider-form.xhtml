@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<ui:composition template="/WEB-INF/templates/layout.xhtml">
+    <ui:define name="title">Ponudnik | AIV Naloga 9</ui:define>
+    <ui:define name="header">#{app.providerFormTitle}</ui:define>
+    <ui:define name="content">
+        <div class="card">
+            <h:form>
+                <div class="form-grid">
+                    <div class="field">
+                        <h:outputLabel for="providerName" value="Naziv" />
+                        <h:inputText id="providerName" value="#{app.providerName}" required="true" />
+                    </div>
+                    <div class="field">
+                        <h:outputLabel for="providerEmail" value="Email" />
+                        <h:inputText id="providerEmail" value="#{app.providerEmail}" required="true" disabled="#{app.providerEditMode}" />
+                    </div>
+                    <div class="field">
+                        <h:outputLabel for="providerAddress" value="Naslov" />
+                        <h:inputTextarea id="providerAddress" value="#{app.providerAddress}" required="true" rows="4" />
+                    </div>
+                </div>
+                <div class="btn-row">
+                    <h:commandButton value="Shrani" action="#{app.saveProvider}" />
+                    <h:commandButton value="Prekliči" action="#{app.cancelProviderForm}" />
+                </div>
+            </h:form>
+        </div>
+    </ui:define>
+</ui:composition>
+</html>
+

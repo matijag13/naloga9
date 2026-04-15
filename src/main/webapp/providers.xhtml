@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<ui:composition template="/WEB-INF/templates/layout.xhtml">
+    <ui:define name="title">Ponudniki | AIV Naloga 9</ui:define>
+    <ui:define name="header">Ponudniki</ui:define>
+    <ui:define name="content">
+        <div class="card">
+            <div class="btn-row">
+                <h:form><h:commandButton value="Dodaj ponudnika" action="#{app.newProvider}" /></h:form>
+            </div>
+        </div>
+
+        <div class="card table-wrap">
+            <h:dataTable value="#{app.providers}" var="provider" border="0" styleClass="table">
+                <h:column><f:facet name="header">Naziv</f:facet>#{provider.name}</h:column>
+                <h:column><f:facet name="header">Email</f:facet>#{provider.email}</h:column>
+                <h:column><f:facet name="header">Naslov</f:facet>#{provider.address}</h:column>
+                <h:column><f:facet name="header">Št. polnilnic</f:facet>#{provider.stations.size()}</h:column>
+                <h:column>
+                    <f:facet name="header">Akcije</f:facet>
+                    <h:form>
+                        <div class="actions">
+                            <h:commandButton value="Uredi" action="#{app.editProvider(provider)}" />
+                            <h:commandButton value="Briši" action="#{app.requestDeleteProvider(provider)}" />
+                        </div>
+                    </h:form>
+                </h:column>
+            </h:dataTable>
+        </div>
+
+        <h:panelGroup rendered="#{app.providerDeleteDialogVisible}">
+            <div class="card">
+                <h3>Potrditev brisanja</h3>
+                <p>Ali želite izbrisati ponudnika <strong>#{app.providerDeleteName}</strong> (#{app.providerDeleteEmail})?</p>
+                <h:form>
+                    <div class="btn-row">
+                        <h:commandButton value="Da" action="#{app.confirmDeleteProvider}" />
+                        <h:commandButton value="Ne" action="#{app.cancelDeleteProvider}" />
+                    </div>
+                </h:form>
+            </div>
+        </h:panelGroup>
+    </ui:define>
+</ui:composition>
+</html>
+
+

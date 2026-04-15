@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<ui:composition template="/WEB-INF/templates/layout.xhtml">
+    <ui:define name="title">Uporabnik | AIV Naloga 9</ui:define>
+    <ui:define name="header">#{app.userFormTitle}</ui:define>
+    <ui:define name="content">
+        <div class="card">
+            <h:form>
+                <div class="form-grid">
+                    <div class="field">
+                        <h:outputLabel for="userName" value="Ime" />
+                        <h:inputText id="userName" value="#{app.userName}" required="true" />
+                    </div>
+                    <div class="field">
+                        <h:outputLabel for="userEmail" value="Email" />
+                        <h:inputText id="userEmail" value="#{app.userEmail}" required="true" disabled="#{app.userEditMode}" />
+                    </div>
+                    <div class="field">
+                        <h:outputLabel for="userCarType" value="Tip vozila" />
+                        <h:inputText id="userCarType" value="#{app.userCarType}" required="true" />
+                    </div>
+                    <div class="field">
+                        <h:outputLabel for="userBalance" value="Stanje" />
+                        <h:inputText id="userBalance" value="#{app.userBalance}" required="true" />
+                    </div>
+                </div>
+                <div class="btn-row">
+                    <h:commandButton value="Shrani" action="#{app.saveUser}" />
+                    <h:commandButton value="Prekliči" action="#{app.cancelUserForm}" />
+                </div>
+            </h:form>
+        </div>
+    </ui:define>
+</ui:composition>
+</html>
+

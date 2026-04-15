@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:ui="jakarta.faces.facelets">
+<h:head>
+    <title><ui:insert name="title">AIV Naloga 9</ui:insert></title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; background: #f6f8fb; color: #1f2937; }
+        .shell { max-width: 1280px; margin: 0 auto; padding: 1rem; }
+        .topbar { background: #0f172a; color: #fff; border-radius: 12px; padding: 1rem; margin-bottom: 1rem; }
+        .topbar h1 { margin: 0 0 0.5rem 0; font-size: 1.5rem; }
+        .menu { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem; }
+        .card { background: #fff; border-radius: 12px; padding: 1rem; margin-bottom: 1rem; box-shadow: 0 1px 4px rgba(15, 23, 42, 0.08); }
+        .summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; }
+        .summary .item { background: #e2e8f0; border-radius: 12px; padding: 1rem; }
+        .actions { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+        .table-wrap { overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; background: #fff; }
+        th, td { border: 1px solid #dbe3ee; padding: 0.65rem; text-align: left; vertical-align: top; }
+        th { background: #e2e8f0; }
+        .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
+        .field { display: flex; flex-direction: column; gap: 0.35rem; }
+        .field input, .field select, .field textarea { padding: 0.55rem; border: 1px solid #cbd5e1; border-radius: 8px; }
+        .note { color: #475569; }
+        .messages { margin-bottom: 1rem; }
+        .btn-row { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem; }
+    </style>
+</h:head>
+<h:body>
+<div class="shell">
+    <div class="topbar">
+        <h1><ui:insert name="header">Upravljanje ponudnikov, polnilnic in uporabnikov</ui:insert></h1>
+        <div class="note">Enotna JSF konzola za CRUD operacije in pregled podatkov.</div>
+        <h:form>
+            <div class="menu">
+                <h:commandButton value="Domov" action="#{app.goHome}" />
+                <h:commandButton value="Uporabniki" action="#{app.goUsers}" />
+                <h:commandButton value="Ponudniki" action="#{app.goProviders}" />
+                <h:commandButton value="Polnilnice" action="#{app.goStations}" />
+            </div>
+        </h:form>
+    </div>
+
+    <div class="messages">
+        <h:messages globalOnly="true" layout="table" style="color:#b91c1c;" />
+        <h:panelGroup rendered="#{not empty app.message}">
+            <div class="card">#{app.message}</div>
+        </h:panelGroup>
+    </div>
+
+    <ui:insert name="content" />
+</div>
+</h:body>
+</html>
+
+

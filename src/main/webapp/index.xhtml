@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<ui:composition template="/WEB-INF/templates/layout.xhtml">
+    <ui:define name="title">Domov | AIV Naloga 9</ui:define>
+    <ui:define name="header">Pregled aplikacije</ui:define>
+    <ui:define name="content">
+        <div class="card">
+            <div class="summary">
+                <div class="item"><strong>Uporabniki</strong><br/>#{app.userCount}</div>
+                <div class="item"><strong>Ponudniki</strong><br/>#{app.providerCount}</div>
+                <div class="item"><strong>Polnilnice</strong><br/>#{app.stationCount}</div>
+            </div>
+            <div class="btn-row">
+                <h:form><h:commandButton value="Pregled uporabnikov" action="#{app.goUsers}" /></h:form>
+                <h:form><h:commandButton value="Pregled ponudnikov" action="#{app.goProviders}" /></h:form>
+                <h:form><h:commandButton value="Pregled polnilnic" action="#{app.goStations}" /></h:form>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Kratek opis</h2>
+            <p>Na voljo so tabelarični pregledi, enotni obrazci za dodajanje in urejanje ter potrditveni dialogi za brisanje podatkov.</p>
+            <p>Uporabite meni na vrhu za prehod med stranmi.</p>
+        </div>
+    </ui:define>
+</ui:composition>
+</html>
