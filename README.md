@@ -1,39 +1,54 @@
-# Naloga 9 – MySQL setup
+# Naloga 9 – JPA + MySQL/JDBC
 
-This project now uses JPA with a container-managed datasource.
-The application code is datasource-agnostic; the MySQL-specific setup is done in the application server.
+Projekt uporablja JPA (`naloga9PU`) in JTA datasource prek JNDI.
 
-## What to configure on the server
+## Persistence unit
 
-1. Install the MySQL JDBC driver on the application server.
-2. Create a JTA datasource with the JNDI name:
+Datoteka: `src/main/resources/META-INF/persistence.xml`
+
+- `transaction-type="JTA"`
+- `jta-data-source`: `java:comp/env/jdbc/naloga9`
+- registrirane entitete: `User`, `Provider`, `ChargingStation`
+- MySQL/Hibernate nastavitve:
+  - `hibernate.dialect=org.hibernate.dialect.MySQLDialect`
+  - `hibernate.hbm2ddl.auto=create-drop`
+  - `jakarta.persistence.schema-generation.database.action=drop-and-create`
+
+## MySQL Connector/J
+
+V `pom.xml` je dodana runtime odvisnost:
+
+```xml
+<dependency>
+    <groupId>com.mysql</groupId>
+    <artifactId>mysql-connector-j</artifactId>
+    <version>8.4.0</version>
+    <scope>runtime</scope>
+</dependency>
+```
+
+## Datasource (strežnik)
+
+Na aplikacijskem strežniku mora obstajati JTA datasource z referenco:
 
 ```text
 jdbc/naloga9
 ```
 
-3. Point that datasource to your MySQL database.
-4. Make sure the datasource is accessible as `java:comp/env/jdbc/naloga9`.
-
-## Persistence unit
-
-The application uses the persistence unit:
+in mora biti dostopen kot:
 
 ```text
-naloga9PU
+java:comp/env/jdbc/naloga9
 ```
 
-It is defined in `src/main/resources/META-INF/persistence.xml` and uses the server-provided JTA datasource.
+Primer JDBC parametrov za MySQL:
 
-## Notes
-
-- The project keeps `drop-and-create` schema generation enabled for development/testing.
-- For production, change schema generation and manage the schema manually.
-- The DAOs already use `EntityManager`, so no further code changes are needed for the MySQL switch.
+- JDBC URL: `jdbc:mysql://localhost:3306/naloga9?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC`
+- Driver class: `com.mysql.cj.jdbc.Driver`
+- uporabnik/geslo: po tvoji lokalni nastavitvi baze
 
 ## Build
 
 ```bash
 mvn clean package
 ```
-
